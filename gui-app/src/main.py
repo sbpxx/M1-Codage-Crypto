@@ -31,6 +31,8 @@ def on_encrypt():
 def on_decrypt():
     try:
         encrypted_message = entry_message.get()
+        encrypted_message = encrypted_message.upper()  # Normalise le message
+        print(f"[DEBUG] Message à décrypter (normaliséAAAAAAAAAAAAA) : {encrypted_message}")
         if not encrypted_message:
             raise ValueError("Veuillez entrer un message crypté à décrypter.")
         decrypted_message = decrypter(encrypted_message, clef)  # Appelle la fonction corrigée

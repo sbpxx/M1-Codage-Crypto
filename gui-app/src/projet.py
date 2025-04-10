@@ -62,12 +62,13 @@ Fonction décryptant le message à partir de la clef
 def decrypter(code, clef):
     print(f"[DEBUG] Message crypté (entrée) : {code}")
     print(f"[DEBUG] Clé utilisée pour le décryptage : {clef}")
-    code = num(code)  # Convertit le message crypté en valeurs numériques
-    inte = [((co - cl) % 26) for co, cl in zip(code, clef)]  # Applique le décalage de 3
-    string = [chr(c + 64) if c != 0 else 'Z' for c in inte]  # Gère le cas où c == 0 (modulo 26)
+    # On convertit le message crypté en indices numériques
+    code = [ord(char) - 64 for char in code]
+    inte = [((co - cl + 26) % 26) for co, cl in zip(code, clef)]
+    string = [chr(c + 64) if c != 0 else 'Z' for c in inte]
     print(f"[DEBUG] Message décrypté (numérique) : {inte}")
     print(f"[DEBUG] Message décrypté (texte) : {''.join(string)}")
-    return ''.join(string)  # Retourne le message décrypté sous forme de chaîne
+    return ''.join(string)
 
 '''
 Etape de la manipulation des jokers 
