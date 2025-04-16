@@ -29,12 +29,16 @@ def num(message):
 Génère la clef à utiliser, boucle sur la taille du message pour générer une clef de la bonne longueur
 '''
 def genererClef(liste, taille):
-    print(f"[DEBUG] Liste initiale pour la génération de clé : {liste}")
+    """
+    Génère une clé en modifiant la pile de cartes existante.
+    """
+    global clef
+    clef.clear()  
     for _ in range(taille):
-        liste = etape1(liste)
-        liste = lecturecartes(liste)
-    print(f"[DEBUG] Clé générée : {clef}")
-    return clef
+        liste = etape1(liste) 
+        liste = lecturecartes(liste)  
+    print(f"[DEBUG] Nouvelle clé générée : {clef}")
+    return liste 
 
 '''
 Fonction correspondant à la phase de lecture des cartes et à leur manipulation
@@ -141,7 +145,7 @@ def etape4(liste):
 '''
 On garde le tas initial pour le transmettre à notre correspondant
 '''
-np.random.seed(42)
+np.random.seed()
 liste=np.random.permutation(np.arange(1,55))
 
 liste_initiale=liste
